@@ -9,7 +9,9 @@ var titleStyle = wb.createStyle({ font: { size: 12, bold: true } })
 let Row = 1
 let Column = 1
 
-lineReader.eachLine('README.md', line => {
+const file = process.argv
+
+lineReader.eachLine(file[2], line => {
     // Seções
     if (line.match(/#.+/gm)) {
         ws
@@ -47,6 +49,6 @@ lineReader.eachLine('README.md', line => {
     }
 
 }, () => {
-    wb.write('Excel.xlsx')
+    wb.write(file[2] + '.xlsx')
     console.log('End')
 })
